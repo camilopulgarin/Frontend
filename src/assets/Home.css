@@ -1,0 +1,57 @@
+body {
+    margin:0;
+    padding:0;
+ }
+ 
+ .jumbotron {
+   align-items: center;
+   /*display: flex;*/
+   background-image: url('./Banner.jpeg');
+   background-size: cover;
+   background-color: #898888;
+   height: 100vh; /* Add this */
+   color: white;
+ }
+
+
+ .Title {
+  width: 700px;
+  
+  /*background-color: red;*/
+  /* centrar vertical y horizontalmente */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -150px 0 0 -250px; /* aplicar a top y al margen izquierdo un valor negativo para completar el centrado del elemento hijo */
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.77);
+  border-color: rgb(207, 255, 255) /*set the color you want here*/
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+  color: #000;
+  background-color: rgba(207, 255, 255, 0.767);
+  border-color: rgb(0, 0, 0); /*set the color you want here*/
+}
+
+
+.navbar-light .navbar-nav .nav-link {
+
+  color:rgb(207, 255, 255) !important
+}
+
+
+.modalx{
+    z-index: 45;
+    padding-top: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0) !important;
+    background-color: rgba(0, 0, 0, 0.829) !important;
+}
