@@ -201,7 +201,8 @@ export default {
         
         
         getTest () {
-            const path = 'http://127.0.0.1:8000/api/v1.0/recomendacion/'
+            //const path = 'http://127.0.0.1:8000/api/v1.0/recomendacion/'
+            const path = 'https://apirs.herokuapp.com/api/v1.0/recomendacion/'
             axios.get(path).then((response) => {
                 this.test = response.data
                 //console.log( JSON.stringify(response.data) +" Respuesta de Django")
@@ -212,7 +213,7 @@ export default {
         },
 
         PostPre() {
-            const path = 'http://127.0.0.1:8000/Pre'
+            const path = 'https://apirs.herokuapp.com//Pre'
             
             var SRR = this.SR
             console.log("this.Puntos",SRR)
@@ -228,7 +229,7 @@ export default {
         },
 
         getResultado(){
-            const path = 'http://127.0.0.1:8000/Resultado'
+            const path = 'https://apirs.herokuapp.com/Resultado'
             axios.get(path).then((response) => { 
                 this.result = JSON.stringify(response.data)
                 //console.log(this.result+"Respuesta Django")
@@ -252,7 +253,7 @@ export default {
             })
         },
         PostTest () {
-            const path = 'http://127.0.0.1:8000/Post'
+            const path = 'https://apirs.herokuapp.com/Post'
             //0.8, 1, 0.6, 0.8, 0.4, 0.8, 0.6
             axios.post(path,{"Mecanica": this.Resultado[0]["Mecanica"] / 12,
                             "Telecomunicaciones":this.Resultado[0]["Telecomunicaciones"] / 12,
@@ -287,7 +288,7 @@ export default {
         getPreguntas () {
             this.loading = true
             console.log("this.chartData.datasets.data: ", this.chartData.datasets[0].data)
-            const path = 'http://127.0.0.1:8000/api/v1.0/Preguntas/'
+            const path = 'https://apirs.herokuapp.com/api/v1.0/Preguntas/'
             axios.get(path).then((response) => {
                 this.preguntasT = response.data
                 //console.log("this.preguntasT", this.preguntasT[0].Electricidad)
