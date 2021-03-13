@@ -301,7 +301,7 @@ export default {
                         var res = this.preguntasT[i].Respuestas.split(",")
                         //console.log(res)
                         x = [{enunciado :this.preguntasT[i].Pregunta, respuestas: res, valor: res,
-                              correcta:this.preguntasT[i].Respuesta_Co, id:this.preguntasT[i].id - 3, img:"../../assets/Preguntas/"+this.preguntasT[i].NumPreg}]
+                              correcta:this.preguntasT[i].Respuesta_Co, id:this.preguntasT[i].id - 3, img:"/static/img/"+this.preguntasT[i].NumPreg}]
                     }else if(this.preguntasT[i].Tipo == 2 || this.preguntasT[i].Tipo == 6 || this.preguntasT[i].Tipo == 9){
                         //console.log("Fase--2")
                         var res = this.preguntasT[i].Respuesta_Co.split(",")
@@ -309,10 +309,10 @@ export default {
                         var res2 = this.preguntasT[i].Respuestas.split(",")
                         //console.log(res2)
                         x = [{enunciado :this.preguntasT[i].Pregunta, respuestas: res, valor:res2,
-                              correcta:this.preguntasT[i].Respuesta_Co, id:this.preguntasT[i].id-3, img:"../../assets/Preguntas/"+this.preguntasT[i].NumPreg}]
+                              correcta:this.preguntasT[i].Respuesta_Co, id:this.preguntasT[i].id-3, img:"/static/img/"+this.preguntasT[i].NumPreg}]
                     }else{
                         x = [{enunciado :this.preguntasT[i].Pregunta, respuestas: ["A","B","C"], valor:["A","B","C"],
-                              correcta:this.preguntasT[i].Respuesta_Co, id:this.preguntasT[i].id-3, img:"../../assets/Preguntas/"+this.preguntasT[i].NumPreg}]
+                              correcta:this.preguntasT[i].Respuesta_Co, id:this.preguntasT[i].id-3, img:"/static/img/"+this.preguntasT[i].NumPreg}]
                     }
                      
                     
