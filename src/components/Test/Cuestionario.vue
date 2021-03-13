@@ -66,7 +66,7 @@
             <paginate ref="paginator" name = "preg" :list = "preg" :per = "1">
                 <div v-for="(pregunta, key) in paginated('preg')" :key="key" style="margin-top: 30px; border-radius: 3%;">
                     <h1 v-text="pregunta.enunciado" class="parrafo"></h1>
-                    <img src="../../../static/img/p5.png" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:400px">
+                    <img :src="pregunta.img" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:400px">
                     <div class="container-fluid" >
                 <div class="row" style="    background-color: white; border-radius: 2%; margin-top: 20px;"> 
                     <div class="col-12 col-md-6 col-lg-4 "  v-for="(resp, i) in pregunta.respuestas" :i="i">
@@ -301,7 +301,7 @@ export default {
                         var res = this.preguntasT[i].Respuestas.split(",")
                         //console.log(res)
                         x = [{enunciado :this.preguntasT[i].Pregunta, respuestas: res, valor: res,
-                              correcta:this.preguntasT[i].Respuesta_Co, id:this.preguntasT[i].id - 3, img:this.preguntasT[i].NumPreg}]
+                              correcta:this.preguntasT[i].Respuesta_Co, id:this.preguntasT[i].id - 3, img:"../../assets/Preguntas/"+this.preguntasT[i].NumPreg}]
                     }else if(this.preguntasT[i].Tipo == 2 || this.preguntasT[i].Tipo == 6 || this.preguntasT[i].Tipo == 9){
                         //console.log("Fase--2")
                         var res = this.preguntasT[i].Respuesta_Co.split(",")
@@ -309,10 +309,10 @@ export default {
                         var res2 = this.preguntasT[i].Respuestas.split(",")
                         //console.log(res2)
                         x = [{enunciado :this.preguntasT[i].Pregunta, respuestas: res, valor:res2,
-                              correcta:this.preguntasT[i].Respuesta_Co, id:this.preguntasT[i].id-3, img:this.preguntasT[i].NumPreg}]
+                              correcta:this.preguntasT[i].Respuesta_Co, id:this.preguntasT[i].id-3, img:"../../assets/Preguntas/"+this.preguntasT[i].NumPreg}]
                     }else{
                         x = [{enunciado :this.preguntasT[i].Pregunta, respuestas: ["A","B","C"], valor:["A","B","C"],
-                              correcta:this.preguntasT[i].Respuesta_Co, id:this.preguntasT[i].id-3, img:this.preguntasT[i].NumPreg}]
+                              correcta:this.preguntasT[i].Respuesta_Co, id:this.preguntasT[i].id-3, img:"../../assets/Preguntas/"+this.preguntasT[i].NumPreg}]
                     }
                      
                     
