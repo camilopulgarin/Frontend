@@ -63,10 +63,10 @@
         </div>-->
         <div v-if="condicion">
         <div class="col-md-12 text-center">
-            <paginate ref="paginator" name = "preg" :list = "preg" :per = "28">
+            <paginate ref="paginator" name = "preg" :list = "preg" :per = "1">
                 <div v-for="(pregunta, key) in paginated('preg')" :key="key" style="margin-top: 30px; border-radius: 3%;">
                     <h1 v-text="pregunta.enunciado" class="parrafo"></h1>
-                    <img src="../../assets/Preguntas/p1.png" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:400px">
+                    <img src="../../../static/img/p5.png" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:400px">
                     <div class="container-fluid" >
                 <div class="row" style="    background-color: white; border-radius: 2%; margin-top: 20px;"> 
                     <div class="col-12 col-md-6 col-lg-4 "  v-for="(resp, i) in pregunta.respuestas" :i="i">
