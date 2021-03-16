@@ -14,7 +14,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/Vue',
       name: 'HelloWorld',
       component: HelloWorld
     },
@@ -49,7 +49,7 @@ export default new Router({
       component: Cuestionario
     },
     {
-      path: '/Home',
+      path: '/',
       name: 'Home',
       component: Home
     },
