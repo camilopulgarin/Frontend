@@ -23,44 +23,8 @@
                 </div>
             </div>
         </div>
-        <button  v-on:click="onSubmit">Guardar</button>
-    
-        <!--<div v-for="(pregunta, key) in preg" :key="key" style="margin-top: 30px; border-radius: 3%;"> 
-            <h1 v-text="pregunta.enunciado" class="parrafo"></h1>
-             <img src="../../assets/Preguntas/p1.png" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:400px">
-            <div class="container-fluid" >
-                <div class="row" style="    background-color: white; border-radius: 2%; margin-top: 20px;">
-                    
-                    
-                    <div class="col-12 col-md-6 col-lg-4 "  v-for="(resp, i) in pregunta.respuestas" :i="i">
-                        
-                        <b-form-group  v-slot="{ ariaDescribedby }" >
-                            <b-form-checkbox-group 
-                                class="customCheck1"
-                                buttons
-                                :id="pregunta.id.toString()"
-                                v-model="calificacion[key]"
-                                :preg="pregunta.respuestas[i]"
-                                :aria-describedby="ariaDescribedby"
-                                name="flavour-2"
-                                type="radio"
-                                
+        <b-button variant="success" v-on:click="onSubmit" style="margin-top:10px; font-size: 20px">Enviar</b-button>
 
-                            >
-                                <b-form-checkbox name="check-button" style="font-size: 80px; border-radius: 70px;width: 135px;" button button-variant="info" v-bind:value=pregunta.valor[i]>{{pregunta.respuestas[i]}}
-                                    
-                                    
-                                </b-form-checkbox>
-                            </b-form-checkbox-group>
-                        </b-form-group>
-
-                        
-                    </div>
-                    
-                </div>
-            
-            </div>
-        </div>-->
         <div v-if="condicion">
         <div class="col-md-12 text-center">
             <paginate ref="paginator" name = "preg" :list = "preg" :per = "1">
@@ -69,7 +33,7 @@
                     <img :src="getImgUrl(pregunta.img)" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:400px">
                     <div class="container-fluid" >
                 <div class="row" style="    background-color: white; border-radius: 2%; margin-top: 20px;"> 
-                    <div class="col-12 col-md-6 col-lg-4 "  v-for="(resp, i) in pregunta.respuestas" :i="i">
+                    <div class="col-12 col-sm-4 col-md-4 col-lg-3 "  v-for="(resp, i) in pregunta.respuestas" :i="i">
                         <!--<h1  v-text="pregunta.respuestas[i]" >
                         </h1>-->
                         <b-form-group  v-slot="{ ariaDescribedby }" >
@@ -108,8 +72,8 @@
                 for="preg"
                 :show-step-links="true"
                 :simple="{
-                    prev: 'Anterior',
-                    next: 'Siguiente'  
+                    prev: '< Anterior',
+                    next: 'Siguiente >'  
                 }"
                ></paginate-links>
             </div>
@@ -211,13 +175,13 @@ export default {
                 
             })
         },
-        
+
         getImgUrl(pic) {
         return require('../../assets/Preguntas/'+pic)
         },
 
         PostPre() {
-            const path = 'https://apirs.herokuapp.com//Pre'
+            const path = 'https://apirs.herokuapp.com/Pre'
             
             var SRR = this.SR
             console.log("this.Puntos",SRR)
@@ -290,6 +254,7 @@ export default {
             })
         },
         getPreguntas () {
+            
             this.loading = true
             console.log("this.chartData.datasets.data: ", this.chartData.datasets[0].data)
             const path = 'https://apirs.herokuapp.com/api/v1.0/Preguntas/'
@@ -465,6 +430,15 @@ export default {
         //this.PostPre()
         //this.spinner()
         this.getPreguntas ()
+        if(this.calificacion.length > 27){
+                if(this.calificacion[28].length > 5){
+                    console.log("Correcto")
+                }else{
+                    console.log("Menor a 6")
+                }
+            }else{
+                console.log("Menor a 27")
+            }
     }
 }
 </script>

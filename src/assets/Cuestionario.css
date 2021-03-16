@@ -80,13 +80,16 @@
 }
 .paginate-links li {
   display: inline;
-  background-color:#E43A48;
+  background-color:#000b6ded;
   color:white;
   padding:0.5rem;
   margin-left:0.3rem;
   margin-right: 0.3rem;
   cursor:pointer;
-  border-radius: 3px;
+  /*border-radius: 3px;*/
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 30px;
 }
 .paginate-result{
   width: 100%;
