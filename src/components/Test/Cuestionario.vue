@@ -30,7 +30,7 @@
         <div class="col-md-12 text-center">
             <paginate ref="paginator" name = "preg" :list = "preg" :per = "1">
                 <div v-for="(pregunta, key) in paginated('preg')" :key="key" style="margin-top: 30px; border-radius: 3%;">
-                    <h1 v-text="pregunta.enunciado" class="parrafo"> ¿ ?</h1>
+                    <h1 v-text="pregunta.enunciado" class="parrafo"> </h1>
                     <img :src="getImgUrl(pregunta.img)" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:400px">
                     <div class="container-fluid" >
                 <div class="row" style="    background-color: white; border-radius: 2%; margin-top: 20px;"> 
