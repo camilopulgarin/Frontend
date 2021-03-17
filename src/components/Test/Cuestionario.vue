@@ -23,13 +23,14 @@
                 </div>
             </div>
         </div>
-        <b-button variant="success" v-on:click="onSubmit" style="margin-top:10px; font-size: 20px">Enviar</b-button>
+       
 
         <div v-if="condicion">
+         <b-button variant="success" v-on:click="onSubmit" style="margin-top:10px; font-size: 20px">Enviar</b-button>
         <div class="col-md-12 text-center">
             <paginate ref="paginator" name = "preg" :list = "preg" :per = "1">
                 <div v-for="(pregunta, key) in paginated('preg')" :key="key" style="margin-top: 30px; border-radius: 3%;">
-                    <h1 v-text="pregunta.enunciado" class="parrafo"></h1>
+                    <h1 v-text="pregunta.enunciado" class="parrafo"> ¿ ?</h1>
                     <img :src="getImgUrl(pregunta.img)" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:400px">
                     <div class="container-fluid" >
                 <div class="row" style="    background-color: white; border-radius: 2%; margin-top: 20px;"> 
@@ -80,9 +81,48 @@
       </div>
       
       </div>
-      <div class="container" v-else style="background-color: #ffffffd9">
+      <div class="container" v-else style="background-color: #ffffffd9; ">
+        <div class="row row-content align-items-center">
+            <div  class="col-12 col-sm-6 ">
+                <b-table style="background-color: white" class="table" striped hover :items="Ponderado"></b-table>
+            </div>
+            <div class="col-12 col-sm-6">
+                <pie-chart  :data="chartData" :options="chartOptions"></pie-chart>
+            </div>
+            <div class="col-12">
+                
+                <div class="card card-body bg-light">
+                    <blockquote class="blockquote">
+                        <div class="card" >
+                        <h3 class="card-header bg-primary text-white" style="background-color: #1b0085 !important">Califica la recomendacion</h3>
+                        <div class="card-body">
+                            <dl class="row">
+                                
+                                <dt class="col-6">
+                                    <button v-on:click="Likes(1)" style="background-color: transparent; border: 0;">
+                                    <img src="../../assets/iconos/like1.png" alt="200"/>
+                                    </button>
+                                </dt>
+                                <dd class="col-6">
+                                    <button v-on:click="Likes(0)" style="background-color: transparent; border: 0;">
+                                     <img src="../../assets/iconos/dislike1.png" alt="200"/>
+                                    </button>
+                                </dd>
+                                
+                            </dl>
+                            
+                                
+                            
+                        </div>
+                    </div>
+                        <footer class="blockquote-footer">
+                            Tu opinion es importante para el crecimiento de la aplicacion
+                        </footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
         
-        <pie-chart :data="chartData" :options="chartOptions"></pie-chart>
       
 
       </div>
@@ -153,6 +193,8 @@ export default {
         Puntuacion:[6, 10, 5, 15, 7, 12, 20],
         Top : [],
         SR : [],
+        Ponderado: [],
+        dataPuntos:[]
         
             
         }
@@ -162,8 +204,36 @@ export default {
                 {enunciado:"Pregunta - 2", respuestas:["a","b","c"],valor:["a","b","M"],correcta:"c", id:"m4"},
                 {enunciado:"Pregunta - 3", respuestas:["a","b"],valor:["a","b","M"],correcta:"a",id:"m3"},
                 {enunciado:"Pregunta - 4", respuestas:["a","b","c","d","e","f","g"],valor:["a","b","M","d","e","f","g"],correcta:"c", id:"m5"},*/ 
-        
-        
+        Likes(tipo) {
+            const path = 'https://apirs.herokuapp.com/likes'
+            axios.post(path,{"calif":tipo}).then((response) => {
+                 console.log( JSON.stringify(response.data) +" Respuesta Precision")
+                //console.log( JSON.stringify(response.data) +" Respuesta de Django")
+                window.location.href = '/'
+                
+            })
+            
+            .catch((error) => {
+                 console.log("ERROR")
+            })
+        },
+        Ordenar () {
+            var json = [{"Taller":"Electricidad", 'puntos' : this.dataPuntos[0]},
+                        {"Taller":"Mecanica", 'puntos' : this.dataPuntos[1]},
+                        {"Taller":"Fundicion", 'puntos' : this.dataPuntos[2]},
+                        {"Taller":"Diseño", 'puntos' : this.dataPuntos[3]},
+                        {"Taller":"Dibujo", 'puntos' : this.dataPuntos[4]},
+                        {"Taller":"Telecomunicaciones", 'puntos' : this.dataPuntos[5]},
+                        {"Taller":"Electronica", 'puntos' : this.dataPuntos[6]}]
+            function ordenarAsc(p_array_json, p_key) {
+                p_array_json.sort(function (a, b) {
+                    return b[p_key] - a[p_key] ;
+                });
+            }
+            ordenarAsc(json, 'puntos')
+            console.log(JSON.stringify(json))
+            this.Ponderado = json
+        },
         getTest () {
             //const path = 'http://127.0.0.1:8000/api/v1.0/recomendacion/'
             const path = 'https://apirs.herokuapp.com/api/v1.0/recomendacion/'
@@ -245,6 +315,10 @@ export default {
                                                    response.data.data[0][6],response.data.data[0][5],response.data.data[0][1],
                                                    response.data.data[0][2]]
                 this.SR = [response.data.columns,response.data.data[0]]
+                this.dataPuntos = [response.data.data[0][4],response.data.data[0][0],response.data.data[0][3],
+                                                   response.data.data[0][6],response.data.data[0][5],response.data.data[0][1],
+                                                   response.data.data[0][2]]
+                this.Ordenar()
                 this.condicion = false
                 this.PostPre()
                 this.loading = false
@@ -411,6 +485,7 @@ export default {
             //console.log("Resultado: 0", this.Resultado[0]["Mecanica"])
             this.PostTest()
             
+            
             //this.Resultado = []
         },
 
@@ -429,7 +504,9 @@ export default {
         //this.PostTest()
         //this.PostPre()
         //this.spinner()
+
         this.getPreguntas ()
+        
         if(this.calificacion.length > 27){
                 if(this.calificacion[28].length > 5){
                     console.log("Correcto")
