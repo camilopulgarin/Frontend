@@ -33,7 +33,7 @@
                     <h1 v-text="pregunta.enunciado" class="parrafo"> </h1>
                     
                     <div style="font-size: 30px; background-color: #ffff"><strong>Pregunta {{ pregunta.id + 1}} de 28</strong></div>
-                    <div v-if="pregunta.id === 27 && calificacion.length > 27">
+                    <div v-if="pregunta.id === 27 && calificacion.length > 27"> 
                         <div class="row">
                         <div class="col-sm-12 col-md-8 col-lg-7">
                         <img :src="getImgUrl(pregunta.img)" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:800px">
