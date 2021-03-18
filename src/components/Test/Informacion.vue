@@ -19,10 +19,10 @@
                     señaladas</p>
                     <h2 style="margin-top:40px">Como se puede observar en este ejemplo</h2><br>
                     <div style="width:400">
-                    <img  src="../../assets/iconos/captura-MR.png" width=100% />
+                    <img  src="../../assets/iconos/Captura-MR.png" width=100% />
                     <p style="margin-top:10px; font-size:30px">La pregunta exige que se señalen todas las opciones para poder obtener la calificación</p>
                     <h2 style="margin-top:40px">PASO FINAL!</h2><br>
-                    <img  src="../../assets/iconos/captura-MR2.png" width=100% />
+                    <img  src="../../assets/iconos/Captura-MR2.png" width=100% />
                     <p style="margin-top:10px; font-size:30px">Después de seleccionar todas las posibles respuestas, el sistema permite enviar los datos 
                         para proceder a recomendar los talleres
                     </p>
