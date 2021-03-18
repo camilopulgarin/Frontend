@@ -56,50 +56,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-export default {
-    data() {
-        return{
-            fields: [
-                { key: 'title', label: 'Título'},
-                { key: 'description', label: 'Descripcion'},
-                { key: 'action', label: ''}
-            ],
-            test: [],
-            result: []
-        }
-    }, 
-    methods: {
-        getTest () {
-            const path = 'http://127.0.0.1:8000/api/v1.0/recomendacion/'
-            axios.get(path).then((response) => {
-                this.test = response.data
-                
-            })
-            .catch((error) => {
-                
-            })
-        },
 
-        getResultado(){
-            const path = 'http://127.0.0.1:8000/Resultado'
-            axios.get(path).then((response) => {
-                this.result = JSON.stringify(response.data)
-                console.log(this.result+"Respuesta Django")
-                console.log(response.data.columns[0] +" Respuesta Django")
-                
-            })
-            .catch((error) => {
-                
-            })
-        }
-    },
-
-    created(){
-        this.getTest()
-        this.getResultado()
-    }
-}
 </script>
 
 <style lang="css" scoped>

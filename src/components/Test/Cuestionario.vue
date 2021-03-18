@@ -120,7 +120,6 @@
             </paginate>
             <div class="row">
                <paginate-links
-                :page-count="27"
                 style="padding-left: 0px; padding-right: 0px;"
                 for="preg"
                 :show-step-links="true"

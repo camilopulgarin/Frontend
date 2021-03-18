@@ -18,11 +18,11 @@
     <!--<h1 class="display-4" style="font-size: 150px;font-weight: bold;">Iniciar Test</h1>
     <p class="lead">Este test no es de caracter evaluativo</p>
     <hr class="my-4">
-    <p>Debe seguir las instrucciones</p> lead-->
+    <p>Debe seguir las instrucciones</p> lead  v-on:click="onSubmit"-->
     <p class=" BotonPadding" >
       <a  class="btn btn-primary btn-lg Boton" href="/Test/Cuestionario" role="button" 
       style=""
-      v-on:click="onSubmit">GO!</a>
+     v-on:click="onSubmit">GO!</a>
     </p>
   </div>
   
@@ -38,7 +38,32 @@
 
 </template>
 <script>
+import  PacmanLoader  from  'vue-spinner/src/PacmanLoader.vue';
 
+export default  { 
+  components : {
+    PacmanLoader
+  },
+  data() {
+        return{
+          color: "#fff",
+          size : "500px",
+          loading: false
+
+
+        }
+  },
+        methods: {
+        onSubmit(evt){
+            //evt.preventDefault()
+            this.loading = true
+            //window.location.href("/Test/Cuestionario")
+        }
+        
+      }
+        
+
+}
 
 </script>
 
