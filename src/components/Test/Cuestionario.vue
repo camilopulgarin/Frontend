@@ -152,7 +152,7 @@
                                 <dt class="col-6">
                                     <button v-on:click="Likes(1)" style="background-color: transparent; border: 0;">
                                     <img src="../../assets/iconos/like1.png" alt="200"/>
-                                    </button>
+                                    </button> 
                                 </dt>
                                 <dd class="col-6">
                                     <button v-on:click="Likes(0)" style="background-color: transparent; border: 0;">
