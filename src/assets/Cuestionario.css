@@ -109,3 +109,52 @@
   background-color: rgb(0,0,0) !important;
   background-color: rgba(0, 0, 0, 0.829) !important;
 }
+
+.opciones{
+  font-size: 40px; 
+  border-radius: 35px;
+  width: 75px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+/* cambios css para modo vertical y horizontal */
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 736px)
+{
+
+  .opciones{
+    font-size: 30px; 
+    border-radius: 25px;
+    width: 65px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .parrafo {
+    color:#ffffff;
+    /*background-color: white;*/
+    background-color: #000b6ded;
+    font-weight: bold;
+    border-radius: 20px;
+    font-size: 15px;
+}
+
+.paginate-links li {
+  display: inline;
+  background-color:#000b6ded;
+  color:white;
+  padding:0.5rem;
+  margin-left:0.3rem;
+  margin-right: 0.3rem;
+  cursor:pointer;
+  /*border-radius: 3px;*/
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 25px;
+}
+}

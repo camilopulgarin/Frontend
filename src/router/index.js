@@ -8,12 +8,13 @@ import NewTest from '@/components/Test/NewTest'
 import Resultado from '@/components/Test/Resultado'
 import Cuestionario from '@/components/Test/Cuestionario'
 import Home from '@/components/Test/Home'
+import Informacion from '@/components/Test/Informacion'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
+    /*{
       path: '/Vue',
       name: 'HelloWorld',
       component: HelloWorld
@@ -42,7 +43,7 @@ export default new Router({
       path: '/Test/Resultado',
       name: 'Resultado',
       component: Resultado
-    },
+    },*/
     {
       path: '/Test/Cuestionario',
       name: 'Cuestionario',
@@ -52,6 +53,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/Informacion',
+      name: 'Informacion',
+      component: Informacion
     },
   ],
   mode: 'history'

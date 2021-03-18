@@ -7,7 +7,7 @@
 
     <b-collapse id="nav-collapse" is-nav >
       <b-navbar-nav class="ml-auto" >
-        <b-nav-item href="#" right style=" font-size: 30px; font-weight: bold;"> 
+        <b-nav-item href="/Informacion" right style=" font-size: 30px; font-weight: bold;"> 
             Info       
       </b-nav-item>
       </b-navbar-nav>
@@ -18,10 +18,10 @@
     <!--<h1 class="display-4" style="font-size: 150px;font-weight: bold;">Iniciar Test</h1>
     <p class="lead">Este test no es de caracter evaluativo</p>
     <hr class="my-4">
-    <p>Debe seguir las instrucciones</p>-->
-    <p class="lead" style="margin-left: 100px; width: 400px;">
-      <a  class="btn btn-primary btn-lg" href="/Test/Cuestionario" role="button" 
-      style="font-size: 100px; font-weight: bold; border-radius: 200px; width: 260px; height:260px; padding-top: 11%;border-width: thick !important;"
+    <p>Debe seguir las instrucciones</p> lead-->
+    <p class=" BotonPadding" >
+      <a  class="btn btn-primary btn-lg Boton" href="/Test/Cuestionario" role="button" 
+      style=""
       v-on:click="onSubmit">GO!</a>
     </p>
   </div>
@@ -39,32 +39,7 @@
 </template>
 <script>
 
-import  PacmanLoader  from  'vue-spinner/src/PacmanLoader.vue';
 
-export default  { 
-  components : {
-    PacmanLoader
-  },
-  data() {
-        return{
-          color: "#fff",
-          size : "500px",
-          loading: false
-
-
-        }
-  },
-        methods: {
-        onSubmit(evt){
-            //evt.preventDefault()
-            this.loading = true
-            //window.location.href("/Test/Cuestionario")
-        }
-        
-      }
-        
-
-}
 </script>
 
 <style lang="css" scoped>

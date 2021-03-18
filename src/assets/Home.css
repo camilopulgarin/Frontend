@@ -55,3 +55,50 @@ body {
     background-color: rgb(0,0,0) !important;
     background-color: rgba(0, 0, 0, 0.829) !important;
 }
+
+.Boton{
+  font-size: 100px; 
+  font-weight: bold; 
+  border-radius: 200px; 
+  width: 260px; height:260px; 
+  padding-top: 11%;
+  border-width: thick !important;
+}
+
+.BotonPadding{
+  margin-left: 100px;
+  width: 400px;
+}
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 736px)
+{
+
+  .Boton{
+    font-size: 100px; 
+    font-weight: bold; 
+    border-radius: 200px; 
+    width: 260px; 
+    height:260px; 
+    padding-top: 21%;
+    border-width: thick !important;
+  }
+
+  .BotonPadding{
+    margin-left: 50px;
+    width: 200px;
+  }
+  
+  .Title {
+    width: 200px;
+    
+    /*background-color: red;*/
+    /* centrar vertical y horizontalmente */
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    margin: -150px 0 0 -250px; /* aplicar a top y al margen izquierdo un valor negativo para completar el centrado del elemento hijo */
+    margin-top: -100px;
+  }
+
+}

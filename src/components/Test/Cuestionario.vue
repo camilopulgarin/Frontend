@@ -1,7 +1,7 @@
 
 
 <template lang="html">
-    <div class="container-fluid" style = "background-image:'../../assets/Banner.jpeg'">
+    <div class="container-fluid" style = "background-image:'../../assets/Banner.jpeg'; heigth:100vh">
         <!--<div class="row">
             <div class="col-sm text-left">
                 <div>
@@ -26,15 +26,64 @@
        
 
         <div v-if="condicion">
-         <b-button variant="success" v-on:click="onSubmit" style="margin-top:10px; font-size: 20px">Enviar</b-button>
-        <div class="col-md-12 text-center">
-            <paginate ref="paginator" name = "preg" :list = "preg" :per = "1">
+         
+        <div class="col-md-12 text-center" style="height: 100vh">
+            <paginate ref="paginator" name = "preg" :list = "preg" :per = "1" style="padding-left: 0px; padding-right: 0px;">
                 <div v-for="(pregunta, key) in paginated('preg')" :key="key" style="margin-top: 30px; border-radius: 3%;">
                     <h1 v-text="pregunta.enunciado" class="parrafo"> </h1>
-                    <img :src="getImgUrl(pregunta.img)" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:400px">
-                    <div class="container-fluid" >
+                    <div v-if="pregunta.id === 27 && calificacion.length > 25">
+                        <div class="row">
+                        <div class="col-sm-12 col-md-8 col-lg-7">
+                        <img :src="getImgUrl(pregunta.img)" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:800px">
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-5">
+                        <table class="table">
+                        <thead class="table-dark">
+                            <tr>
+                            <th scope="col">Posicion</th>
+                            <th scope="col">Taller</th>
+                            </tr>
+                        </thead >
+                        <tbody style="background-color: #ffff">
+                            <tr>
+                            <th scope="row">1</th>
+                            <td  v-if="calificacion[27].length > 0">{{ calificacion[27][0]}}</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">2</th>
+                            <td v-if="calificacion[27].length > 1">{{ calificacion[27][1]}}</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">3</th>
+                            <td v-if="calificacion[27].length > 2">{{ calificacion[27][2]}}</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">4</th>
+                            <td v-if="calificacion[27].length > 3">{{ calificacion[27][3]}}</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">5</th>
+                            <td v-if="calificacion[27].length > 4">{{ calificacion[27][4]}}</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">6</th>
+                            <td v-if="calificacion[27].length > 5">{{ calificacion[27][5]}}</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">7</th>
+                            <td v-if="calificacion[27].length > 6">{{ calificacion[27][6]}}</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        <b-button v-if="calificacion[27].length > 6" variant="success" v-on:click="onSubmit" style="margin-top:15px; font-size: 30px">Enviar Respuestas</b-button>
+                        </div>
+                        </div>
+                        
+                    </div>
+                     <img v-else :src="getImgUrl(pregunta.img)" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:800px">
+                <div class="container-fluid" >
                 <div class="row" style="    background-color: white; border-radius: 2%; margin-top: 20px;"> 
-                    <div class="col-12 col-sm-4 col-md-4 col-lg-3 "  v-for="(resp, i) in pregunta.respuestas" :i="i">
+                    <div class="col-4"  v-for="(resp, i) in pregunta.respuestas" :i="i">
                         <!--<h1  v-text="pregunta.respuestas[i]" >
                         </h1>-->
                         <b-form-group  v-slot="{ ariaDescribedby }" >
@@ -51,25 +100,28 @@
 
                             >
                             <!--<h1>{{pregunta.id}}</h1>-->
-                                <b-form-checkbox :id="pregunta.id.toString()" name="check-button" style="font-size: 40px; border-radius: 35px;width: 75px;" button button-variant="info" v-bind:value=pregunta.valor[i]>{{pregunta.respuestas[i]}}
+                                <b-form-checkbox class="opciones" :id="pregunta.id.toString()" name="check-button"  button button-variant="info" v-bind:value=pregunta.valor[i]>{{pregunta.respuestas[i]}}
                                     
                                     <!--<img src="../../assets/logo.png" alt="200" class="img-thumbnail">-->
                                 </b-form-checkbox>
                             </b-form-checkbox-group>
                         </b-form-group>
-
+                        
                         
                     </div>
                     
                 </div>
-            <!--<div>Selected: <strong>{{ calificacion }}</strong></div>
-            <div>Selected: <strong>{{ Resultado }}</strong></div>-->
+            
+            <!--<div>Selected: <strong>{{ calificacion[27]}}</strong></div>-->
+            <!--<div>Selected: <strong>{{ Resultado }}</strong></div>-->
             </div>
                 
             </div>
             </paginate>
             <div class="row">
                <paginate-links
+                :page-count="27"
+                style="padding-left: 0px; padding-right: 0px;"
                 for="preg"
                 :show-step-links="true"
                 :simple="{
@@ -94,7 +146,7 @@
                 <div class="card card-body bg-light">
                     <blockquote class="blockquote">
                         <div class="card" >
-                        <h3 class="card-header bg-primary text-white" style="background-color: #1b0085 !important">Califica la recomendacion</h3>
+                        <h3 class="card-header bg-primary text-white" style="background-color: #1b0085 !important font-weight: bold;">! No olvides califica la recomendacion !</h3>
                         <div class="card-body">
                             <dl class="row">
                                 
@@ -115,8 +167,10 @@
                             
                         </div>
                     </div>
-                        <footer class="blockquote-footer">
-                            Tu opinion es importante para el crecimiento de la aplicacion
+                        <footer class="blockquote-footer" style="font-weight: bold;">
+                            Tu opinion es importante para el crecimiento de la aplicacion <br>
+                            responde esta encuesta:<a href="https://forms.gle/ubKhZam7tFVF2w3H9" target="_blank"> LIK DE ENCUESTA</a>
+
                         </footer>
                     </blockquote>
                 </div>
@@ -194,7 +248,8 @@ export default {
         Top : [],
         SR : [],
         Ponderado: [],
-        dataPuntos:[]
+        dataPuntos:[],
+        preg27: []
         
             
         }
@@ -507,15 +562,7 @@ export default {
 
         this.getPreguntas ()
         
-        if(this.calificacion.length > 27){
-                if(this.calificacion[28].length > 5){
-                    console.log("Correcto")
-                }else{
-                    console.log("Menor a 6")
-                }
-            }else{
-                console.log("Menor a 27")
-            }
+        
     }
 }
 </script>
