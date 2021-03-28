@@ -1,3 +1,6 @@
+<!-- Se plantea un manual de usuario en la aplicacion para reemplazar el archivo de word que se le proporciona a los usuarios
+como guia de uso de la aplicacion -->
+
 <template lang="html">
     <div class="container">
         <div class="row">

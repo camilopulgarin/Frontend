@@ -1,3 +1,7 @@
+<!-- Como trabajo futuro se plantea una vista administrativa para genear diferentes test en la institudion
+Este modulo permitirá Crear test a los profesores de la institucion a pesar de estar en el proyecto no hace parte
+de los objetivos planteados para la tesis -->
+
 <template lang="html">
     <div class="container">
         <div class="row">

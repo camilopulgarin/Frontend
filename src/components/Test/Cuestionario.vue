@@ -1,21 +1,7 @@
-
+<!-- En este archivo se define toda la estructura visual del cuestionario -->
 
 <template lang="html">
     <div class="container-fluid" style = "background-image:'../../assets/Banner.jpeg'; heigth:100vh">
-        <!--<div class="row">
-            <div class="col-sm text-left">
-                <div>
-                <h2>Puntuacion Caso de prueba</h2>
-                </div>
-                <br>
-                <div class="col-sm table-responsive">
-                    <b-table class="table" striped hover :items = "Puntos" :fields = "fields">
-                                       
-                    </b-table>
-                </div>
-            </div>
-
-        </div>-->
         <div v-if="loading">
             <div class="modalx">
                 <div class="container" style="margin-left: 43%;margin-right: 20%;margin-top: 20%;">
@@ -24,15 +10,21 @@
             </div>
         </div>
        
-
+        <!-- La variable condicion utiliza para validar si el usuario ya terminó el test 
+             y llevarlo a la vista de resultados y calificacion del sistema
+        -->
         <div v-if="condicion">
-         
+         <!-- Test -->
         <div class="col-md-12 text-center" style="height: 100vh">
+            <!-- Se utiliza el componente paginate para representar el test en una sola pregunta por pantalla,
+                 que facilita el uso al usuario y reduce tiempos de carga en la vista -->
             <paginate ref="paginator" name = "preg" :list = "preg" :per = "1" style="padding-left: 0px; padding-right: 0px;">
                 <div v-for="(pregunta, key) in paginated('preg')" :key="key" style="margin-top: 30px; border-radius: 3%;">
                     <h1 v-text="pregunta.enunciado" class="parrafo"> </h1>
                     
                     <div style="font-size: 30px; background-color: #ffff"><strong>Pregunta {{ pregunta.id + 1}} de 28</strong></div>
+                    <!-- Se define una tabla dinamica para la ultima pregunta donde el usuario puede ordenar los talleres
+                    a su gusto dinamicamente -->
                     <div v-if="pregunta.id === 27 && calificacion.length > 27"> 
                         <div class="row">
                         <div class="col-sm-12 col-md-8 col-lg-7">
@@ -82,6 +74,7 @@
                         </div>
                         
                     </div>
+                <!-- Se Define la estructura de las preguntas del cuestionario recorriendo las preguntas de la BD -->
                      <img v-else :src="getImgUrl(pregunta.img)" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:800px">
                 <div class="container-fluid" >
                 <div class="row" style="    background-color: white; border-radius: 2%; margin-top: 20px;"> 
@@ -260,6 +253,8 @@ export default {
                 {enunciado:"Pregunta - 2", respuestas:["a","b","c"],valor:["a","b","M"],correcta:"c", id:"m4"},
                 {enunciado:"Pregunta - 3", respuestas:["a","b"],valor:["a","b","M"],correcta:"a",id:"m3"},
                 {enunciado:"Pregunta - 4", respuestas:["a","b","c","d","e","f","g"],valor:["a","b","M","d","e","f","g"],correcta:"c", id:"m5"},*/ 
+        
+        // Almacena la calificacion del usuario y la envia a la api que se encarga de almacenarla
         Likes(tipo) {
             const path = 'https://apirs.herokuapp.com/likes'
             axios.post(path,{"calif":tipo}).then((response) => {
@@ -273,6 +268,8 @@ export default {
                  console.log("ERROR")
             })
         },
+        //Ordena las especialidades segun la calificacion del usuario para representarlas visualmente en la vista de resutados
+
         Ordenar () {
             var json = [{"Taller":"Electricidad", 'puntos' : this.dataPuntos[0]},
                         {"Taller":"Mecanica", 'puntos' : this.dataPuntos[1]},
@@ -290,6 +287,8 @@ export default {
             console.log(JSON.stringify(json))
             this.Ponderado = json
         },
+
+    
         getTest () {
             //const path = 'http://127.0.0.1:8000/api/v1.0/recomendacion/'
             const path = 'https://apirs.herokuapp.com/api/v1.0/recomendacion/'
@@ -301,18 +300,21 @@ export default {
                 
             })
         },
-
+        
+        //Se utiliza para representar dinamicamente las imagenes en la vista
         getImgUrl(pic) {
         return require('../../assets/Preguntas/'+pic)
         },
 
+
+        // Se encarga de enviar la calificacion del test para retornar la precision del algoritmo
         PostPre() {
             const path = 'https://apirs.herokuapp.com/Pre'
             
             var SRR = this.SR
             console.log("this.Puntos",SRR)
             axios.post(path,{"SR":SRR,"Top":this.Top,"Tipo":"1"}).then((response) => {
-                 console.log( JSON.stringify(response.data) +" Respuesta Precision")
+                // console.log( JSON.stringify(response.data) +" Respuesta Precision")
                 //console.log( JSON.stringify(response.data) +" Respuesta de Django")
                 this.loading = false
             })
@@ -322,6 +324,8 @@ export default {
             })
         },
 
+
+        // Trae la calificacion retornada por el sistema de recomendacion
         getResultado(){
             const path = 'https://apirs.herokuapp.com/Resultado'
             axios.get(path).then((response) => { 
@@ -346,9 +350,11 @@ export default {
                 
             })
         },
+
+        // Envia la calificacion del usuario en el test y la envia al sistema de recomendacion 
         PostTest () {
             const path = 'https://apirs.herokuapp.com/Post'
-            //0.8, 1, 0.6, 0.8, 0.4, 0.8, 0.6
+            
             axios.post(path,{"Mecanica": this.Resultado[0]["Mecanica"] / 12,
                             "Telecomunicaciones":this.Resultado[0]["Telecomunicaciones"] / 12,
                             "Electronica": this.Resultado[0]["Electronica"] / 12,
@@ -383,6 +389,8 @@ export default {
                 
             })
         },
+
+        // Consulta el listado de preguntas del test 
         getPreguntas () {
             
             this.loading = true
@@ -427,6 +435,9 @@ export default {
                 
             })
         },
+
+        // Genera la calificacion del test, diferenciando los diferentes tipos de preguntas para retornar los puntos conseguidos en cada taller
+        
         Cal_Calificacion(){
             
             var puntosM = 0

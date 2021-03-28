@@ -13,6 +13,8 @@ import Informacion from '@/components/Test/Informacion'
 Vue.use(Router)
 
 export default new Router({
+  // Se definen las rutas de la aplicacion se comentan las rutas que estan actualmente en desarrollo a futuro, 
+  // solo estan en uso la vista home y el cuestionario 
   routes: [
     /*{
       path: '/Vue',

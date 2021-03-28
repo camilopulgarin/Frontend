@@ -1,3 +1,5 @@
+<!-- Se estructura la vista inicial de la aplicacion -->
+
 <template>
 <div class="container-fluid" style="padding: 0px">
 <b-navbar toggleable="lg"  variant="info" style="position: absolute; width: 100% !important; background-color : #17a2b800 !important">
