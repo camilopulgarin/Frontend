@@ -13,7 +13,7 @@ como guia de uso de la aplicacion -->
                     es una pregunta con única respuesta y por esto se debe elegir una sola opción</p>
                     <h2 style="margin-top:40px">Como se puede observar en este ejemplo</h2><br>
                     <div style="width:400">
-                    <img  src="../../assets/iconos/captura-UR.png" width=100% />
+                    <!--<img  src="../../assets/iconos/captura-UR.png" width=100% />-->
                     </div>
                     <h2 style="margin-top:40px">MULTIPLE RESPUESTA</h2>
                     <p style="margin-top:10px; font-size:30px">Toda pregunta que tenga el icono <img  src="../../assets/iconos/MR.png" height=30px width=40px />, 
@@ -25,7 +25,7 @@ como guia de uso de la aplicacion -->
                     <img  src="../../assets/iconos/Captura-MR.png" width=100% />
                     <p style="margin-top:10px; font-size:30px">La pregunta exige que se señalen todas las opciones para poder obtener la calificación</p>
                     <h2 style="margin-top:40px">PASO FINAL!</h2><br>
-                    <img  src="../../assets/iconos/Captura-MR2.png" width=100% />
+                    <!--<img  src="../../assets/iconos/Captura-MR2.png" width=100% />-->
                     <p style="margin-top:10px; font-size:30px">Después de seleccionar todas las posibles respuestas, el sistema permite enviar los datos 
                         para proceder a recomendar los talleres
                     </p>
