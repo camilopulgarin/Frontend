@@ -9,7 +9,7 @@
 
     <b-collapse id="nav-collapse" is-nav >
       <b-navbar-nav class="ml-auto" >
-        <b-nav-item   right style=" font-size: 30px; font-weight: bold; display:none"> 
+        <b-nav-item  href="/Informacion" right style=" font-size: 30px; font-weight: bold"> 
             Info       
       </b-nav-item>
       </b-navbar-nav>

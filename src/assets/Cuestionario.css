@@ -6,6 +6,11 @@
     border-radius: 20px;
 }
 
+.img-preguntas{
+  border-radius: 3%; 
+  max-height: 330px;
+  width: 390px;
+}
 
 .body {
   /*background-color: #ececec !important;*/
@@ -135,13 +140,18 @@ and (max-device-width: 736px)
     margin-bottom: 5px;
   }
 
+  .img-preguntas{
+    border-radius: 3%; 
+    max-height: 330px !important;
+    width: 390px !important;
+  }
   .parrafo {
     color:#ffffff;
     /*background-color: white;*/
     background-color: #000b6ded;
     font-weight: bold;
     border-radius: 20px;
-    font-size: 15px;
+    font-size: 80px;
 }
 
 .paginate-links li {

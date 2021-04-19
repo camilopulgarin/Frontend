@@ -56,11 +56,11 @@ export default new Router({
       name: 'Home',
       component: Home
     },
-    /*{
+    {
       path: '/Informacion',
       name: 'Informacion',
       component: Informacion
-    },*/
+    },
   ],
   mode: 'history'
 })

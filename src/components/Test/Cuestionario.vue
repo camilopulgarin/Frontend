@@ -9,26 +9,84 @@
                 </div>
             </div>
         </div>
-       
+       <!-- Button trigger modal -->
+    <div>
+        <b-button @click="modalShow = !modalShow" style="display: none">Open Modal</b-button>
+
+        <b-modal v-model="modalShow" ok-only>
+            <div class="accordion" role="tablist">
+    <b-card no-body class="mb-1">
+      <b-card-header header-tag="header" class="p-1" role="tab">
+        <b-button block v-b-toggle.accordion-1 variant="info" style="font-size: 30px; background-color: #090e3c;">Información y recomendaciones</b-button>
+      </b-card-header>
+      <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+        <b-card-body>
+          <b-card-text style="font-size: 19px; text-align: justify;">El sistema de recomendación Starway-sr se desarrolló con el fin de apoyar el proceso de elección de especialidades en la institución y dar a conocer el perfil de cada usuario según los talleres que brinda el colegio. Todo esto se hace debido a la problemática de deserción estudiantil que genera una elección de especialidad errónea. En esta prueba se evalúan aspectos académicos, aptitudes y preferencias de los usuarios que la realizan, con el fin de relacionar sus respuestas con los posibles talleres que más se ajustan a su perfil, haciendo uso de la medida numérica Tf-idf.<br>
+        <br>Al finalizar la prueba se le hará una recomendación en orden descendente, donde el primer taller es el que más se ajusta a su perfil y el ultimo es el menos relevante para su perfil según la calificación del sistema de recomendación, cabe resaltar que el resultado otorgado por la aplicación no define sus capacidades o preferencias en su totalidad, por ende, no debe tomarse como único criterio para tomar su decisión final de especialidad técnica. 
+        </b-card-text>
+        </b-card-body>
+      </b-collapse>
+    </b-card>
+
+    <b-card no-body class="mb-1">
+      <b-card-header header-tag="header" class="p-1" role="tab">
+        <b-button block v-b-toggle.accordion-2 variant="info" style="font-size: 30px; background-color: #090e3c;">Instrucciones</b-button>
+      </b-card-header>
+      <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
+        <b-card-body>
+          <b-card-text style="font-size: 19px; text-align: justify;">
+              El siguiente test está conformado por 28 preguntas de las cuales las primeras 27 son de única respuesta y se representan con el icono UR y una pregunta final de múltiple respuesta que se representa con el icono MR, donde el usuario debe seleccionar todas las opciones en el orden que considere, ejemplo: A, C, D, F, E, B, G y de esta forma ordenar los talleres según su nivel de agrado.<br>
+              <br>Al finalizar se le mostrará una tabla ordenada de mayor a menor con la puntuación arrojada por el sistema en cada uno de los talleres, como paso final puede calificar la herramienta y dirigirse a la encuesta ubicada en la parte inferior de su pantalla.<br>
+              Para más información visite el siguiente enlace: <a href="/Informacion" target="_blank">Pagina informativa</a>
+        </b-card-text>
+        </b-card-body>
+      </b-collapse>
+    </b-card>
+    </div>
+    </b-modal>
+    </div>
+
+<!-- Modal 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>-->
+  
         <!-- La variable condicion utiliza para validar si el usuario ya terminó el test 
              y llevarlo a la vista de resultados y calificacion del sistema
         -->
         <div v-if="condicion">
          <!-- Test -->
+         
         <div class="col-md-12 text-center" style="height: 100vh">
             <!-- Se utiliza el componente paginate para representar el test en una sola pregunta por pantalla,
                  que facilita el uso al usuario y reduce tiempos de carga en la vista -->
             <paginate ref="paginator" name = "preg" :list = "preg" :per = "1" style="padding-left: 0px; padding-right: 0px;">
                 <div v-for="(pregunta, key) in paginated('preg')" :key="key" style="margin-top: 30px; border-radius: 3%;">
-                    <h1 v-text="pregunta.enunciado" class="parrafo"> </h1>
+                    <h2 v-text="pregunta.enunciado" class="parrafo"> </h2>
                     
-                    <div style="font-size: 30px; background-color: #ffff"><strong>Pregunta {{ pregunta.id + 1}} de 28</strong></div>
+                    <div style="font-size: 25px; background-color: #ffff"><strong>Pregunta {{ pregunta.id + 1}} de 28</strong></div>
                     <!-- Se define una tabla dinamica para la ultima pregunta donde el usuario puede ordenar los talleres
                     a su gusto dinamicamente -->
                     <div v-if="pregunta.id === 27 && calificacion.length > 27"> 
                         <div class="row">
                         <div class="col-sm-12 col-md-8 col-lg-7">
-                        <img :src="getImgUrl(pregunta.img)" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:800px">
+                        <img :src="getImgUrl(pregunta.img)" alt="200" class="img-thumbnail img-preguntas" >
                         </div>
                         <div class="col-sm-12 col-md-4 col-lg-5">
                         <table class="table">
@@ -75,7 +133,7 @@
                         
                     </div>
                 <!-- Se Define la estructura de las preguntas del cuestionario recorriendo las preguntas de la BD -->
-                     <img v-else :src="getImgUrl(pregunta.img)" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:800px">
+                     <img v-else :src="getImgUrl(pregunta.img)" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:400px">
                 <div class="container-fluid" >
                 <div class="row" style="    background-color: white; border-radius: 2%; margin-top: 20px;"> 
                     <div class="col-4"  v-for="(resp, i) in pregunta.respuestas" :i="i">
@@ -195,8 +253,10 @@ export default {
         return{
         loading :false,
         color : "#fff",
+        modalShow: true,
         chartOptions: {
         hoverBorderWidth: 20
+
         },
         chartData: {
             hoverBackgroundColor: "red",
