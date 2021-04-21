@@ -68,7 +68,7 @@
 </div>-->
   
         <!-- La variable condicion utiliza para validar si el usuario ya terminó el test 
-             y llevarlo a la vista de resultados y calificacion del sistema
+             y llevarlo a la vista de resultados y calificacion del sistema condicion
         -->
         <div v-if="condicion">
          <!-- Test -->
@@ -76,11 +76,11 @@
         <div class="col-md-12 text-center" style="height: 100vh">
             <!-- Se utiliza el componente paginate para representar el test en una sola pregunta por pantalla,
                  que facilita el uso al usuario y reduce tiempos de carga en la vista -->
-            <paginate ref="paginator" name = "preg" :list = "preg" :per = "1" style="padding-left: 0px; padding-right: 0px;">
-                <div v-for="(pregunta, key) in paginated('preg')" :key="key" style="margin-top: 30px; border-radius: 3%;">
-                    <h2 v-text="pregunta.enunciado" class="parrafo"> </h2>
+            <paginate ref="paginator" name = "preg" :list = "preg" :per = "1" style="padding-left: 0px; padding-right: 0px; margin-bottom: 0px;">
+                <div v-for="(pregunta, key) in paginated('preg')" :key="key" style="margin-top: 5px; border-radius: 3%;">
+                    <p v-text="pregunta.enunciado" class="parrafo"> </p>
                     
-                    <div style="font-size: 25px; background-color: #ffff"><strong>Pregunta {{ pregunta.id + 1}} de 28</strong></div>
+                    <div style="font-size: 20px; background-color: #ffff"><strong>Pregunta {{ pregunta.id + 1}} de 28</strong></div>
                     <!-- Se define una tabla dinamica para la ultima pregunta donde el usuario puede ordenar los talleres
                     a su gusto dinamicamente -->
                     <div v-if="pregunta.id === 27 && calificacion.length > 27"> 
@@ -133,10 +133,10 @@
                         
                     </div>
                 <!-- Se Define la estructura de las preguntas del cuestionario recorriendo las preguntas de la BD -->
-                     <img v-else :src="getImgUrl(pregunta.img)" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:400px">
+                     <img v-else :src="getImgUrl(pregunta.img)" alt="200" class="img-thumbnail" style="border-radius: 3%; max-height:400px; width: 600px;">
                 <div class="container-fluid" >
-                <div class="row" style="    background-color: white; border-radius: 2%; margin-top: 20px;"> 
-                    <div class="col-4"  v-for="(resp, i) in pregunta.respuestas" :i="i">
+                <div class="row" style="    background-color: white; border-radius: 2%"> 
+                    <div class="col-3 col-sm-2 col-lg-2 col-md-2"  v-for="(resp, i) in pregunta.respuestas" :i="i">
                         <!--<h1  v-text="pregunta.respuestas[i]" >
                         </h1>-->
                         <b-form-group  v-slot="{ ariaDescribedby }" >
@@ -153,7 +153,7 @@
 
                             >
                             <!--<h1>{{pregunta.id}}</h1>-->
-                                <b-form-checkbox class="opciones" :id="pregunta.id.toString()" name="check-button"  button button-variant="info" v-bind:value=pregunta.valor[i]>{{pregunta.respuestas[i]}}
+                                <b-form-checkbox style="margin: 4px;" class="opciones" :id="pregunta.id.toString()" name="check-button"  button button-variant="info" v-bind:value=pregunta.valor[i]>{{pregunta.respuestas[i]}}
                                     
                                     <!--<img src="../../assets/logo.png" alt="200" class="img-thumbnail">-->
                                 </b-form-checkbox>
@@ -173,12 +173,12 @@
             </paginate>
             <div class="row">
                <paginate-links
-                style="padding-left: 0px; padding-right: 0px;"
+                style="padding-left: 0px; padding-right: 0px; font-size:20px !important;"
                 for="preg"
                 :show-step-links="true"
                 :simple="{
-                    prev: '< Anterior',
-                    next: 'Siguiente >'  
+                    prev: '<Anterior',
+                    next: 'Siguiente>'  
                 }"
                ></paginate-links>
             </div>
@@ -186,9 +186,81 @@
       
       </div>
       <div class="container" v-else style="background-color: #ffffffd9; ">
+          <div class="row row-content align-items-center">
+                <div  class="col-12 ">
+                    <p class="Titulo-Result">Starway-SR te recomienda: </p>
+            </div>
+            </div>
+        <div class="row row-content align-items-center">
+            <div  class="col-12 ">
+            <b-card no-body class="overflow-hidden" style="max-width: 1000px;">
+                <b-row no-gutters>
+                <b-col md="6">
+                    <div v-if="Ponderado[0].Taller == 'Telecomunicaciones'">
+                        <img src="../../assets/satellite.jpg" alt="200" class="img-thumbnail">
+                    </div>
+                    <div v-if="Ponderado[0].Taller == 'Mecanica'">
+                        <img src="../../assets/PortadaMecanica.jpg" alt="200" class="img-thumbnail">
+                    </div>
+                    <div v-if="Ponderado[0].Taller == 'Diseño'">
+                        <img src="../../assets/ProdadaDiseno.jpg" alt="200" class="img-thumbnail">
+                    </div>
+                    <div v-if="Ponderado[0].Taller == 'Dibujo'">
+                        <img src="../../assets/PortadaDibujo.jpg" alt="200" class="img-thumbnail">
+                    </div>
+                    <div v-if="Ponderado[0].Taller == 'Electronica'">
+                        <img src="../../assets/PortadaElectronica.jpg" alt="200" class="img-thumbnail">
+                    </div>
+                    <div v-if="Ponderado[0].Taller == 'Fundicion'">
+                        <img src="../../assets/PortadaFundicion.jpg" alt="200" class="img-thumbnail">
+                    </div>
+                    <div v-if="Ponderado[0].Taller == 'Electricidad'">
+                        <img src="../../assets/PortadaElectricidad.jpg" alt="200" class="img-thumbnail">
+                    </div>
+                </b-col>
+                <b-col md="6">
+                    <b-card-body  v-bind:title= Ponderado[0].Taller>
+                    
+                    <div v-if="Ponderado[0].Taller == 'Telecomunicaciones'">
+                        <img src="../../assets/Telecom.png">
+                    </div>
+                    <div v-if="Ponderado[0].Taller == 'Mecanica'">
+                        <img src="../../assets/TMecanica.png">
+                    </div>
+                    <div v-if="Ponderado[0].Taller == 'Electricidad'">
+                        <img src="../../assets/Electricidad.png">
+                    </div>
+                    <div v-if="Ponderado[0].Taller == 'Fundicion'">
+                        <img src="../../assets/TFundicion.png">
+                    </div>
+                    <div v-if="Ponderado[0].Taller == 'Diseño'">
+                        <img src="../../assets/Diseño.png">
+                    </div>
+                    <div v-if="Ponderado[0].Taller == 'Dibujo'">
+                        <img src="../../assets/Dibujo.png">
+                    </div>
+                    <div v-if="Ponderado[0].Taller == 'Electronica'">
+                        <img src="../../assets/Electronica.png">
+                    </div>
+                    <b-card-text style="text-align: justify; margin-top: 15px">
+                        Según el sistema de recomendación el taller que mas se ajusta a sus aptitudes y preferencias es: <b>{{Ponderado[0].Taller}}</b>. 
+                        Sin embargo, el taller de <b>{{Ponderado[1].Taller}}</b> y de <b>{{Ponderado[2].Taller}}</b> no deberían descartarse.
+                    </b-card-text>
+                    </b-card-body>
+                </b-col>
+                </b-row>
+            </b-card>
+            </div>
+            </div>    
+        
+        <div class="row row-content align-items-center">
+            <div  class="col-12">
+                <p class="Titulo-Result">Puntuación general</p>
+        </div>
+        </div>
         <div class="row row-content align-items-center">
             <div  class="col-12 col-sm-6 ">
-                <b-table style="background-color: white" class="table" striped hover :items="Ponderado"></b-table>
+                <b-table style="background-color: white; overflow-x:auto;" class="table" striped hover :items="Ponderado"></b-table>
             </div>
             <div class="col-12 col-sm-6">
                 <pie-chart  :data="chartData" :options="chartOptions"></pie-chart>
@@ -198,18 +270,18 @@
                 <div class="card card-body bg-light">
                     <blockquote class="blockquote">
                         <div class="card" >
-                        <h3 class="card-header bg-primary text-white" style="background-color: #1b0085 !important font-weight: bold;">! No olvides califica la recomendacion !</h3>
+                        <h3 class="card-header bg-primary text-white" style="background-color: #1b0085 !important font-weight: bold;">¡ No olvides calificar la recomendacion !</h3>
                         <div class="card-body">
                             <dl class="row">
                                 
                                 <dt class="col-6">
                                     <button v-on:click="Likes(1)" style="background-color: transparent; border: 0;">
-                                    <img src="../../assets/iconos/like1.png" alt="200"/>
+                                    <img style="height: 60px;" src="../../assets/iconos/like1.png" alt="200"/>
                                     </button> 
                                 </dt>
                                 <dd class="col-6">
                                     <button v-on:click="Likes(0)" style="background-color: transparent; border: 0;">
-                                     <img src="../../assets/iconos/dislike1.png" alt="200"/>
+                                     <img style="height: 60px;" src="../../assets/iconos/dislike1.png" alt="200"/>
                                     </button>
                                 </dd>
                                 
@@ -331,13 +403,15 @@ export default {
         //Ordena las especialidades segun la calificacion del usuario para representarlas visualmente en la vista de resutados
 
         Ordenar () {
-            var json = [{"Taller":"Electricidad", 'puntos' : this.dataPuntos[0]},
-                        {"Taller":"Mecanica", 'puntos' : this.dataPuntos[1]},
-                        {"Taller":"Fundicion", 'puntos' : this.dataPuntos[2]},
-                        {"Taller":"Diseño", 'puntos' : this.dataPuntos[3]},
-                        {"Taller":"Dibujo", 'puntos' : this.dataPuntos[4]},
-                        {"Taller":"Telecomunicaciones", 'puntos' : this.dataPuntos[5]},
-                        {"Taller":"Electronica", 'puntos' : this.dataPuntos[6]}]
+            var total = this.dataPuntos[0] + this.dataPuntos[1] + this.dataPuntos[2] + this.dataPuntos[3] +
+            this.dataPuntos[4] + this.dataPuntos[5] + this.dataPuntos[6]
+            var json = [{"Taller":"Electricidad", 'puntos' : ((this.dataPuntos[0] / total) * 100 ).toFixed(1)},
+                        {"Taller":"Mecanica", 'puntos' : ((this.dataPuntos[1] / total) * 100 ).toFixed(1)},
+                        {"Taller":"Fundicion", 'puntos' : ((this.dataPuntos[2] / total) * 100 ).toFixed(1)},
+                        {"Taller":"Diseño", 'puntos' : ((this.dataPuntos[3] / total) * 100 ).toFixed(1)},
+                        {"Taller":"Dibujo", 'puntos' : ((this.dataPuntos[4] / total) * 100 ).toFixed(1)},
+                        {"Taller":"Telecomunicaciones", 'puntos' : ((this.dataPuntos[5] / total) * 100 ).toFixed(1)},
+                        {"Taller":"Electronica", 'puntos' : ((this.dataPuntos[6] / total) * 100 ).toFixed(1)}]
             function ordenarAsc(p_array_json, p_key) {
                 p_array_json.sort(function (a, b) {
                     return b[p_key] - a[p_key] ;
@@ -433,9 +507,12 @@ export default {
                                   "Dibujo" : response.data.data[0][5], 
                                   "Diseño" : response.data.data[0][6]}];
                 this.Puntos = resultados
-                this.chartData.datasets[0].data = [response.data.data[0][4],response.data.data[0][0],response.data.data[0][3],
-                                                   response.data.data[0][6],response.data.data[0][5],response.data.data[0][1],
-                                                   response.data.data[0][2]]
+                var totalPuntos =response.data.data[0][4] + response.data.data[0][0] + response.data.data[0][3]+
+                                                   response.data.data[0][6]+response.data.data[0][5]+response.data.data[0][1]+
+                                                   response.data.data[0][2]
+                this.chartData.datasets[0].data = [((response.data.data[0][4] / totalPuntos) * 100 ).toFixed(1),((response.data.data[0][0] / totalPuntos) * 100 ).toFixed(1),((response.data.data[0][3]/ totalPuntos) * 100 ).toFixed(1),
+                                                   ((response.data.data[0][6]/ totalPuntos) * 100 ).toFixed(1),((response.data.data[0][5]/ totalPuntos) * 100 ).toFixed(1),((response.data.data[0][1]/ totalPuntos) * 100 ).toFixed(1),
+                                                   ((response.data.data[0][2]/ totalPuntos) * 100 ).toFixed(1)]
                 this.SR = [response.data.columns,response.data.data[0]]
                 this.dataPuntos = [response.data.data[0][4],response.data.data[0][0],response.data.data[0][3],
                                                    response.data.data[0][6],response.data.data[0][5],response.data.data[0][1],
